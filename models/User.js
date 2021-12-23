@@ -6,7 +6,7 @@ class User extends Model { //run instance data per user to check password
     checkPassword(loginPw) { return bcrypt.compareSync(loginPw, this.password); }
 }
 
-User.init({ //defining the User table
+User.init({ //defining the User model
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
