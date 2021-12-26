@@ -2,43 +2,43 @@ const sequelize = require('../config/connection');
 const { User, Post, Comment } = require('../models');
 
 const userdata = [{
-        username: 'kcheykim',
+        username: 'kcheykim1',
         password: 'password123'
     },
     {
-        username: 'scheykim',
+        username: 'scheykim2',
         password: 'password123'
     },
     {
-        username: 'pcheykim',
+        username: 'pcheykim3',
         password: 'password123'
     },
     {
-        username: 'vmartinez',
+        username: 'vmartinez4',
         password: 'password123'
     },
     {
-        username: 'bmartinez',
+        username: 'bmartinez5',
         password: 'password123'
     },
     {
-        username: 'pmartinez',
+        username: 'pmartinez6',
         password: 'password123'
     },
     {
-        username: 'abratcher',
+        username: 'abratcher7',
         password: 'password123'
     },
     {
-        username: 'dbratcher',
+        username: 'dbratcher8',
         password: 'password123'
     },
     {
-        username: 'jbratcher',
+        username: 'jbratcher9',
         password: 'password123'
     },
     {
-        username: 'tbratcher',
+        username: 'tbratcher10',
         password: 'password123'
     }
 ];
