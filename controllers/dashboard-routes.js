@@ -9,7 +9,7 @@ router.get('/', (req, res) => { //get all posts for dashboard
         attributes: ['id', 'title', 'contents', 'created_at'],
         include: [{
                 model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                attributes: ['id', 'comment_text', 'user_id', 'post_id', 'created_at'],
                 include: { model: User, attributes: ['username'] }
             },
             {
@@ -28,7 +28,7 @@ router.get('/edit/:id', (req, res) => {
         attributes: ['id', 'title', 'contents', 'created_at'],
         include: [{
                 model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                attributes: ['id', 'comment_text', 'user_id', 'post_id', 'created_at'],
                 include: { model: User, attributes: ['username'] }
             },
             {
