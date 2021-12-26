@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Post, User, Comment } = require('../../models');
-//const withAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => { //get all posts
     Post.findAll({
@@ -37,7 +37,7 @@ router.get('/:id', (req, res) => { //get post by ID
     }).catch(err => { res.status(500).json(err); });
 });
 
-router.post('/', (req, res) => { //expect title, contents, user_id
+router.post('/', withAuth, (req, res) => { //expect title, contents, user_id
     Post.create({
             title: req.body.title,
             contents: req.body.contents,
@@ -46,7 +46,7 @@ router.post('/', (req, res) => { //expect title, contents, user_id
         .catch(err => { res.status(500).json(err); });
 });
 
-router.put('/:id', (req, res) => { //update post by ID
+router.put('/:id', withAuth, (req, res) => { //update post by ID
     Post.update({
         title: req.body.title,
         contents: req.body.contents
@@ -61,7 +61,7 @@ router.put('/:id', (req, res) => { //update post by ID
     }).catch(err => { res.status(500).json(err); });
 });
 
-router.delete('/:id', (req, res) => { //remove post by ID
+router.delete('/:id', withAuth, (req, res) => { //remove post by ID
     Post.destroy({
         where: { id: req.params.id }
     }).then(dbPostData => {
