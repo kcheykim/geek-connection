@@ -29,7 +29,7 @@ async function loginFormHandler(event) { //login form
         });
 
         if (response.ok) { //check response status
-            document.location.replace('/dashboard');
+            document.location.replace('/dashboard/');
         } else {
             alert(response.statusText);
         }
