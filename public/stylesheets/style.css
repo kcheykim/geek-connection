@@ -14,7 +14,7 @@ html {
 
 a {
     text-decoration: none;
-    color: #1fa557;
+    color: red;
     font-weight: bold;
     transition: color .1s;
 }
@@ -87,7 +87,7 @@ header {
 }
 
 header h1 {
-    font-size: 1em;
+    font-size: 2.5em;
 }
 
 main {
@@ -129,7 +129,7 @@ main {
 .post .title span {
     font-style: italic;
     font-size: 90%;
-    color: #7d7d7d;
+    color: #050202;
 }
 
 .edit-link {
