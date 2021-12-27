@@ -39,6 +39,7 @@ The Geek Connection application is a blog site that allows developers to write a
 ## Usage
 Here are the images and links of the pages: <br />
 ![geek-connection](./assets/images/geek-connection.png?raw=true)<br />
+https://whispering-ridge-86387.herokuapp.com/
 
 ## Credits
 Here are the list of collaborators:  
