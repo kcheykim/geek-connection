@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', (req, res) => { //get all posts for dashboard
+router.get('/', withAuth, (req, res) => { //get all posts for dashboard
     Post.findAll({
         where: { user_id: req.session.user_id },
         attributes: ['id', 'title', 'contents', 'created_at'],
@@ -12,10 +12,7 @@ router.get('/', (req, res) => { //get all posts for dashboard
                 attributes: ['id', 'comment_text', 'user_id', 'post_id', 'created_at'],
                 include: { model: User, attributes: ['username'] }
             },
-            {
-                model: User,
-                attributes: ['username']
-            }
+            { model: User, attributes: ['username'] }
         ]
     }).then(dbPostData => {
         const posts = dbPostData.map(post => post.get({ plain: true }));
@@ -31,10 +28,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
                 attributes: ['id', 'comment_text', 'user_id', 'post_id', 'created_at'],
                 include: { model: User, attributes: ['username'] }
             },
-            {
-                model: User,
-                attributes: ['username']
-            }
+            { model: User, attributes: ['username'] }
         ]
     }).then(dbPostData => {
         if (dbPostData) {

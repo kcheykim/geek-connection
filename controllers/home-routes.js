@@ -6,7 +6,6 @@ const { Post, User, Comment } = require('../models');
 //     res.render('homepage');
 // });
 
-
 router.get('/', (req, res) => { //get all posts for homepage
     Post.findAll({
         attributes: ['id', 'title', 'contents', 'created_at'],
@@ -15,10 +14,7 @@ router.get('/', (req, res) => { //get all posts for homepage
                 attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: { model: User, attributes: ['username'] }
             },
-            {
-                model: User,
-                attributes: ['username']
-            }
+            { model: User, attributes: ['username'] }
         ]
     }).then(dbPostData => {
         const posts = dbPostData.map(post => post.get({ plain: true }));
@@ -35,14 +31,11 @@ router.get('/post/:id', (req, res) => { //get single post
                 attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: { model: User, attributes: ['username'] }
             },
-            {
-                model: User,
-                attributes: ['username']
-            }
+            { model: User, attributes: ['username'] }
         ]
     }).then(dbPostData => {
         if (!dbPostData) {
-            res.status(404).json({ message: 'No post found with this id' });
+            res.status(404).json({ message: 'Post Not Found' });
             return;
         }
         const post = dbPostData.get({ plain: true });
