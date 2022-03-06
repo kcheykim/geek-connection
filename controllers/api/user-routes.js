@@ -37,6 +37,7 @@ router.put('/:id', (req, res) => { //get user by ID
 router.post('/', (req, res) => { //expects username and password
     User.create({
         username: req.body.username,
+        email: req.body.email,
         password: req.body.password
     }).then(dbUserData => {
         req.session.save(() => {
@@ -50,7 +51,7 @@ router.post('/', (req, res) => { //expects username and password
 
 router.post('/login', (req, res) => { //expects email and password
     User.findOne({
-        where: { username: req.body.username }
+        where: { email: req.body.email }
     }).then(dbUserData => {
         if (!dbUserData) {
             res.status(400).json({ message: 'Username Not Found' });
@@ -68,7 +69,7 @@ router.post('/login', (req, res) => { //expects email and password
             req.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
-            res.json({ user: dbUserData, message: 'Successfully Logged In' });
+            res.json({ user: dbUserData, message: 'Not Logged In' });
         });
     });
 });
