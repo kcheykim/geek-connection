@@ -1,77 +1,29 @@
-<section class="hero is-fullheight bg">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-
-          <form action="" class="login-form box">
-            <div class="field">
-              <label for="email-login" class="label">Email</label>
-              <div class="control has-icons-left">
-                <input type="email" placeholder="e.g. GEEK@gmail.com" class="input" id="email-login" />
-                <span class="icon is-small is-left">
-                  <i class="fa fa-envelope"></i>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-              <label for="password-login" class="label">Password</label>
-              <div class="control has-icons-left">
-                <input type="password" class="input" id="password-login" />
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-            </div>
-            <div class="field">
-              <button type="submit" class="login button is-success">
-                Login
-              </button>
-            </div>
-          </form>
-
-          <form class="signup-form box">
-            <div class="field">
-              <label for="username-signup" class="label">Username</label>
-              <div class="control has-icons-left">
-                <input type="text" class="input" id="username-signup" />
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-              <label for="username-signup" class="label">Email</label>
-              <div class="control has-icons-left">
-                <input type="email" placeholder="e.g. GEEK@gmail.com" class="input" id="email-signup" />
-                <span class="icon is-small is-left">
-                  <i class="fa fa-envelope"></i>
-                </span>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="password-signup" class="label">Password (8 characters long)</label>
-              <div class="control has-icons-left">
-                <input type="password" class="input" id="password-signup" />
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </div>
-            </div>
-            <div class="field">
-            </div>
-            <div class="field">
-              <button type="submit" class="sign-in button is-success">
-                Sign Up
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+<form class="login-form">
+  <div>
+    <label for="username-login">USERNAME:</label>
+    <input type="text" id="username-login" />
   </div>
-</section>
-<script src="./javascript/login.js"></script>
+  <div>
+    <label for="password-login">PASSWORD:</label>
+    <input type="password" id="password-login" />
+  </div>
+  <div>
+    <button type="submit">LOGIN</button>
+  </div>
+</form>
+
+<form class="signup-form">
+  <div>
+    <label for="username-signup">USERNAME:</label>
+    <input type="text" id="username-signup" />
+  </div>
+  <div>
+    <label for="password-signup">PASSWORD:</label>
+    <input type="text" id="password-signup" />
+  </div>
+  <div>
+    <button type="submit">SIGNUP</button>
+  </div>
+</form>
+
+<script src="/javascript/login.js"></script>
