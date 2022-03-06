@@ -3,8 +3,8 @@ const { User, Post, Comment } = require('../../models');
 
 router.get('/', (req, res) => { //get all users
     User.findAll({
-            attributes: { exclude: ['password'] }
-        }).then(dbUserData => res.json(dbUserData))
+        attributes: { exclude: ['password'] }
+    }).then(dbUserData => res.json(dbUserData))
         .catch(err => { res.status(500).json(err); });
 });
 
@@ -13,17 +13,17 @@ router.put('/:id', (req, res) => { //get user by ID
         attributes: { exclude: ['password'] },
         where: { id: req.params.id },
         include: [{
+            model: Post,
+            attributes: ['id', 'title', 'contents', 'created_at']
+        },
+        {
+            model: Comment,
+            attributes: ['id', 'comment_text', 'created_at'],
+            include: {
                 model: Post,
-                attributes: ['id', 'title', 'contents', 'created_at']
-            },
-            {
-                model: Comment,
-                attributes: ['id', 'comment_text', 'created_at'],
-                include: {
-                    model: Post,
-                    attributes: ['title']
-                }
+                attributes: ['title']
             }
+        }
         ]
     }).then(dbUserData => {
         if (!dbUserData) {
