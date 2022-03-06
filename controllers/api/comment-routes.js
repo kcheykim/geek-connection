@@ -1,10 +1,26 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { Comment, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-    Comment.findAll()
-        .then(dbCommentData => res.json(dbCommentData))
+    Comment.findAll({
+            attributes: ['id', 'comment_text', 'rating_score', 'user_id', 'post_id', 'created_at', 'updated_at'],
+            order: [
+                ['created_at', 'DESC']
+            ],
+            include: [{ model: User, attributes: ['username'] }]
+        }).then(dbCommentData => res.json(dbCommentData))
+        .catch(err => { res.status(500).json(err); });
+});
+
+router.get('/:id', (req, res) => {
+    Comment.findOne({
+            attributes: ['id', 'comment_text', 'rating_score', 'user_id', 'post_id', 'created_at', 'updated_at'],
+            order: [
+                ['created_at', 'DESC']
+            ],
+            include: [{ model: User, attributes: ['username'] }]
+        }).then(dbCommentData => res.json(dbCommentData))
         .catch(err => { res.status(500).json(err); });
 });
 
@@ -27,6 +43,15 @@ router.delete('/:id', withAuth, (req, res) => { //delete commment by ID
         }
         res.json(dbCommentData);
     }).catch(err => { res.status(500).json(err); });
+});
+
+router.put('/:id', (req, res) => {
+    Comment.update({
+            comment_text: req.body.comment_text,
+        }, {
+            where: { id: req.params.id }
+        }).then(dbPostData => res.json(dbPostData))
+        .catch(err => { res.status(500).json(err); })
 });
 
 module.exports = router;
