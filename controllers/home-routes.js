@@ -10,12 +10,19 @@ router.get('/', (req, res) => { //get all posts for homepage
                 attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: { model: User, attributes: ['username'] }
             },
-            { model: User, attributes: ['username'] }
+            { model: User, attributes: ['username'] },
+            { model: Comment, attributes: ['comment_text']}
         ]
     }).then(dbPostData => {
         const posts = dbPostData.map(post => post.get({ plain: true }));
         res.render('homepage', { posts, loggedIn: req.session.loggedIn });
     }).catch(err => { res.status(500).json(err); });
+});
+
+router.get('/', (req, res) => {
+    res.render('homepage', {
+        loggedIn: req.session.loggedIn
+    });
 });
 
 router.get('/post/:id', (req, res) => { //get single post

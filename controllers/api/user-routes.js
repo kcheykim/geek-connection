@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => { //get user by ID
                 attributes: ['title']
             }
         },
-        {model: User, attributes['username']}
+        {model: User, attributes: ['username']}
         ]
     }).then(dbUserData => {
         if (!dbUserData) {
@@ -35,7 +35,8 @@ router.get('/:id', (req, res) => { //get user by ID
     }).catch(err => { res.status(500).json(err); });
 });
 
-router.post('/', (req, res) => { //expects username and password
+router.post('/', (req, res) => {
+    // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
     User.create({
         username: req.body.username,
         email: req.body.email,
@@ -45,9 +46,13 @@ router.post('/', (req, res) => { //expects username and password
             req.session.user_id = dbUserData.id;
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
+
             res.json(dbUserData);
         });
-    }).catch(err => { res.status(500).json(err); });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 router.post('/login', (req, res) => { //expects email and password
