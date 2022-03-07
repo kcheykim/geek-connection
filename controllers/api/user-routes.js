@@ -8,7 +8,7 @@ router.get('/', (req, res) => { //get all users
         .catch(err => { res.status(500).json(err); });
 });
 
-router.put('/:id', (req, res) => { //get user by ID
+router.get('/:id', (req, res) => { //get user by ID
     User.findOne({
         attributes: { exclude: ['password'] },
         where: { id: req.params.id },
@@ -23,7 +23,8 @@ router.put('/:id', (req, res) => { //get user by ID
                 model: Post,
                 attributes: ['title']
             }
-        }
+        },
+        {model: User, attributes['username']}
         ]
     }).then(dbUserData => {
         if (!dbUserData) {
